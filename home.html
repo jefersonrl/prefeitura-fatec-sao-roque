@@ -87,18 +87,37 @@
             }
             .main-content {
                 margin-left: 0;
-                padding: 15px;
-                padding-bottom: 100px; /* Espaço para a barra inferior e footer */
+                padding: 10px;
+                padding-bottom: 100px;
             }
             .header-top {
+                display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 15px;
+                gap: 10px;
+                margin-bottom: 15px;
+                position: relative;
+            }
+            .header-top > div:first-child {
+                width: 100%;
+                padding-right: 50px; /* Espaço para o avatar */
             }
             .user-profile {
-                width: 100%;
-                justify-content: space-between;
-                flex-direction: row-reverse;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: auto;
+                margin-top: 5px;
+            }
+            .user-profile .text-end {
+                display: none !important;
+            }
+            .shortcut-menu {
+                width: calc(100% + 20px);
+                margin-left: -10px;
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-top: 10px;
             }
             .stat-card {
                 padding: 15px;
@@ -111,7 +130,7 @@
             }
             footer {
                 margin-left: 0 !important;
-                padding-bottom: 80px !important; /* Espaço para nav inferior */
+                padding-bottom: 80px !important;
             }
             .btn-add {
                 bottom: 80px;
@@ -119,16 +138,6 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.5rem;
-            }
-            .header-top .d-flex.gap-2 {
-                overflow-x: auto;
-                width: 100%;
-                padding-bottom: 10px;
-                white-space: nowrap;
-                -webkit-overflow-scrolling: touch;
-            }
-            .header-top .d-flex.gap-2::-webkit-scrollbar {
-                display: none;
             }
         }
         /* Top Header */
