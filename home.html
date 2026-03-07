@@ -52,7 +52,47 @@
         }
         .main-content {
             margin-left: var(--sidebar-width);
-            padding: 20px;
+            padding: 30px;
+        }
+        /* Responsividade Mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: 60px;
+                flex-direction: row;
+                justify-content: space-around;
+                bottom: 0;
+                top: auto;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            .sidebar-icon {
+                margin-bottom: 0;
+                font-size: 1.2rem;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 15px;
+                padding-bottom: 80px; /* Espaço para a barra inferior */
+            }
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .user-profile {
+                width: 100%;
+                justify-content: flex-end;
+            }
+            .stat-card {
+                padding: 15px;
+            }
+            .stat-value {
+                font-size: 1.5rem;
+            }
+            #map {
+                height: 300px;
+            }
         }
         /* Top Header */
         .header-top {
@@ -76,6 +116,7 @@
             justify-content: center;
             font-weight: bold;
             color: #666;
+            border: 2px solid var(--brand-green);
         }
         /* Cards */
         .stat-card {
@@ -168,9 +209,8 @@
 <nav class="sidebar">
     <a href="home.html" class="sidebar-icon active" title="Dashboard"><i class="bi bi-speedometer2"></i></a>
     <a href="produtores.html" class="sidebar-icon" title="Produtores"><i class="bi bi-people"></i></a>
-    <a href="#" class="sidebar-icon" title="Mapa"><i class="bi bi-geo-alt"></i></a>
-    <a href="#" class="sidebar-icon" title="Financeiro"><i class="bi bi-currency-dollar"></i></a>
-    <a href="#" class="sidebar-icon" title="Configurações"><i class="bi bi-gear"></i></a>
+    <a href="culturas.html" class="sidebar-icon" title="Culturas"><i class="bi bi-tree"></i></a>
+    <a href="mapa_propriedades.html" class="sidebar-icon" title="Mapa de Propriedades"><i class="bi bi-geo-alt"></i></a>
 </nav>
 
 <!-- Main Content -->
@@ -178,14 +218,23 @@
     <header class="header-top">
         <div>
             <h1 class="h4 mb-0 fw-bold">Áreas de Trabalho</h1>
-            <p class="text-muted small">Tenha uma visão geral das produções em São Roque</p>
+            <p class="text-muted small mb-3">Tenha uma visão geral das produções em São Roque</p>
+            
+            <!-- Menu de Atalhos Rápidos -->
+            <div class="d-flex gap-2 mb-3">
+                <a href="home.html" class="btn btn-success btn-sm active"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                <a href="produtores.html" class="btn btn-outline-success btn-sm"><i class="bi bi-people"></i> Produtores</a>
+                <a href="mapa_propriedades.html" class="btn btn-outline-success btn-sm"><i class="bi bi-geo-alt"></i> Mapa com Filtros</a>
+                <a href="culturas.html" class="btn btn-outline-success btn-sm"><i class="bi bi-tree"></i> Histórico</a>
+                <a href="perfil.html" class="btn btn-outline-success btn-sm"><i class="bi bi-person-circle"></i> Perfil</a>
+            </div>
         </div>
         <div class="user-profile">
             <div class="text-end d-none d-sm-block">
                 <div class="fw-bold small">Técnico Agrícola</div>
-                <div class="text-muted" style="font-size: 0.7rem;">Sessão Ativa</div>
+                <button onclick="logout()" class="btn btn-link p-0 text-danger text-decoration-none" style="font-size: 0.7rem;">Sair do Sistema</button>
             </div>
-            <div class="avatar">SR</div>
+            <a href="perfil.html" class="avatar text-decoration-none">SR</a>
         </div>
     </header>
 
@@ -230,7 +279,10 @@
         <!-- Mapa -->
         <div class="col-lg-8">
             <div class="stat-card">
-                <h2 class="card-title">Mapa de Unidades - São Roque</h2>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="card-title mb-0">Mapa de Unidades - São Roque</h2>
+                    <a href="mapa_propriedades.html" class="btn btn-outline-success btn-sm"><i class="bi bi-funnel"></i> Explorar com Filtros</a>
+                </div>
                 <div id="map"></div>
             </div>
         </div>
@@ -275,6 +327,15 @@
 
 <!-- Leaflet JS for Map -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    // Função de Logoff
+    function logout() {
+        if (confirm("Deseja realmente sair do sistema?")) {
+            window.location.href = 'index.html';
+        }
+    }
+</script>
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 

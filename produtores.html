@@ -52,13 +52,63 @@
             margin-left: var(--sidebar-width);
             padding: 30px;
         }
-        .section-card {
-            background: #fff;
-            border-radius: 15px;
-            border: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            padding: 25px;
+        /* Responsividade Mobile */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: 60px;
+                flex-direction: row;
+                justify-content: space-around;
+                bottom: 0;
+                top: auto;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+            .sidebar-icon {
+                margin-bottom: 0;
+                font-size: 1.2rem;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 15px;
+                padding-bottom: 80px; /* Espaço para a barra inferior */
+            }
+            .section-card {
+                padding: 15px;
+            }
+            #map-producer {
+                height: 250px;
+            }
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .d-flex.gap-2 {
+                flex-wrap: wrap;
+            }
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 30px;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
+            border: 2px solid var(--brand-green);
         }
         .section-title {
             font-weight: 700;
@@ -98,19 +148,38 @@
 <!-- Sidebar -->
 <nav class="sidebar">
     <a href="home.html" class="sidebar-icon" title="Dashboard"><i class="bi bi-speedometer2"></i></a>
-    <a href="#" class="sidebar-icon active" title="Produtores"><i class="bi bi-people"></i></a>
-    <a href="#" class="sidebar-icon" title="Mapa"><i class="bi bi-geo-alt"></i></a>
-    <a href="#" class="sidebar-icon" title="Financeiro"><i class="bi bi-currency-dollar"></i></a>
-    <a href="#" class="sidebar-icon" title="Configurações"><i class="bi bi-gear"></i></a>
+    <a href="produtores.html" class="sidebar-icon active" title="Produtores"><i class="bi bi-people"></i></a>
+    <a href="culturas.html" class="sidebar-icon" title="Culturas"><i class="bi bi-tree"></i></a>
+    <a href="mapa_propriedades.html" class="sidebar-icon" title="Mapa de Propriedades"><i class="bi bi-geo-alt"></i></a>
 </nav>
 
 <main class="main-content">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 fw-bold mb-0">Visualização de Produtor</h1>
+    <header class="header-top">
         <div>
-            <a href="cadastro_produtor.html" class="btn btn-outline-secondary btn-sm me-2"><i class="bi bi-pencil"></i> Editar</a>
-            <a href="cadastro_produtor.html" class="btn btn-success btn-sm"><i class="bi bi-plus-lg"></i> Novo Produtor</a>
+            <h1 class="h4 mb-0 fw-bold">Produtores Rurais</h1>
+            <p class="text-muted small mb-3">Gerenciamento e visualização de fichas técnicas</p>
+            
+            <!-- Menu de Atalhos Rápidos -->
+            <div class="d-flex gap-2 mb-3">
+                <a href="home.html" class="btn btn-outline-success btn-sm"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                <a href="produtores.html" class="btn btn-success btn-sm active"><i class="bi bi-people"></i> Produtores</a>
+                <a href="mapa_propriedades.html" class="btn btn-outline-success btn-sm"><i class="bi bi-geo-alt"></i> Mapa com Filtros</a>
+                <a href="culturas.html" class="btn btn-outline-success btn-sm"><i class="bi bi-tree"></i> Histórico</a>
+                <a href="perfil.html" class="btn btn-outline-success btn-sm"><i class="bi bi-person-circle"></i> Perfil</a>
+            </div>
         </div>
+        <div class="user-profile">
+            <div class="text-end d-none d-sm-block">
+                <div class="fw-bold small">Técnico Agrícola</div>
+                <button onclick="logout()" class="btn btn-link p-0 text-danger text-decoration-none" style="font-size: 0.7rem;">Sair do Sistema</button>
+            </div>
+            <a href="perfil.html" class="avatar text-decoration-none">SR</a>
+        </div>
+    </header>
+
+    <div class="d-flex justify-content-end mb-4">
+        <a href="cadastro_produtor.html" class="btn btn-outline-secondary btn-sm me-2"><i class="bi bi-pencil"></i> Editar</a>
+        <a href="cadastro_produtor.html" class="btn btn-success btn-sm"><i class="bi bi-plus-lg"></i> Novo Produtor</a>
     </div>
 
     <!-- Dados Básicos -->
@@ -319,6 +388,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+    function logout() {
+        if (confirm("Deseja realmente sair do sistema?")) {
+            window.location.href = 'index.html';
+        }
+    }
+
     // Inicialização do Mapa para o Produtor
     const map = L.map('map-producer').setView([-23.5516, -47.1475], 15);
     
