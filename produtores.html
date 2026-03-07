@@ -110,6 +110,14 @@
             color: #666;
             border: 2px solid var(--brand-green);
         }
+        .section-card {
+            background: #fff;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
         .section-title {
             font-weight: 700;
             color: var(--brand-green);
@@ -120,26 +128,25 @@
             border-bottom: 2px solid #f1f1f1;
             padding-bottom: 10px;
         }
-        .form-label {
+        .info-label {
             font-weight: 600;
-            font-size: 0.85rem;
-            color: #555;
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2px;
         }
-        .form-control-plaintext {
-            font-weight: 500;
+        .info-value {
+            font-weight: 600;
             color: #333;
-            padding-top: 0;
+            display: block;
+            margin-bottom: 15px;
         }
         #map-producer {
             height: 350px;
             width: 100%;
             border-radius: 12px;
             margin-top: 15px;
-        }
-        .badge-status {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
         }
     </style>
 </head>
@@ -148,7 +155,7 @@
 <!-- Sidebar -->
 <nav class="sidebar">
     <a href="home.html" class="sidebar-icon" title="Dashboard"><i class="bi bi-speedometer2"></i></a>
-    <a href="produtores.html" class="sidebar-icon active" title="Produtores"><i class="bi bi-people"></i></a>
+    <a href="propriedades.html" class="sidebar-icon" title="Gerenciar Propriedades"><i class="bi bi-houses"></i></a>
     <a href="culturas.html" class="sidebar-icon" title="Culturas"><i class="bi bi-tree"></i></a>
     <a href="mapa_propriedades.html" class="sidebar-icon" title="Mapa de Propriedades"><i class="bi bi-geo-alt"></i></a>
 </nav>
@@ -156,13 +163,13 @@
 <main class="main-content">
     <header class="header-top">
         <div>
-            <h1 class="h4 mb-0 fw-bold">Produtores Rurais</h1>
-            <p class="text-muted small mb-3">Gerenciamento e visualização de fichas técnicas</p>
+            <h1 class="h4 mb-0 fw-bold">Ficha Completa do Produtor</h1>
+            <p class="text-muted small mb-3">Dados detalhados técnicos, socioeconômicos e geográficos</p>
             
             <!-- Menu de Atalhos Rápidos -->
             <div class="d-flex gap-2 mb-3">
                 <a href="home.html" class="btn btn-outline-success btn-sm"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                <a href="produtores.html" class="btn btn-success btn-sm active"><i class="bi bi-people"></i> Produtores</a>
+                <a href="propriedades.html" class="btn btn-outline-success btn-sm"><i class="bi bi-houses"></i> Propriedades</a>
                 <a href="mapa_propriedades.html" class="btn btn-outline-success btn-sm"><i class="bi bi-geo-alt"></i> Mapa com Filtros</a>
                 <a href="culturas.html" class="btn btn-outline-success btn-sm"><i class="bi bi-tree"></i> Histórico</a>
                 <a href="perfil.html" class="btn btn-outline-success btn-sm"><i class="bi bi-person-circle"></i> Perfil</a>
@@ -177,212 +184,239 @@
         </div>
     </header>
 
-    <div class="d-flex justify-content-end mb-4">
-        <a href="cadastro_produtor.html" class="btn btn-outline-secondary btn-sm me-2"><i class="bi bi-pencil"></i> Editar</a>
-        <a href="cadastro_produtor.html" class="btn btn-success btn-sm"><i class="bi bi-plus-lg"></i> Novo Produtor</a>
-    </div>
-
-    <!-- Dados Básicos -->
-    <div class="section-card">
-        <h2 class="section-title h5"><i class="bi bi-person-vcard"></i> Dados Básicos</h2>
-        <div class="row g-3">
-            <div class="col-md-4">
-                <label class="form-label">Nome</label>
-                <div class="form-control-plaintext">João da Silva Góes</div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex align-items-center gap-3">
+            <div class="avatar-large" style="width: 60px; height: 60px; background-color: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; color: var(--brand-green); border: 3px solid var(--brand-green);">JG</div>
+            <div>
+                <h2 class="h5 fw-bold mb-0">João da Silva Góes</h2>
+                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill" style="font-size: 0.7rem;">Produtor Ativo</span>
             </div>
-            <div class="col-md-3">
-                <label class="form-label">CPF</label>
-                <div class="form-control-plaintext">123.456.789-00</div>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label">Telefone 1</label>
-                <div class="form-control-plaintext">(11) 99999-0001</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Telefone 2</label>
-                <div class="form-control-plaintext">(11) 4712-0000</div>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label">Status</label>
-                <div><span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">Ativo</span></div>
-            </div>
-            <div class="col-md-10">
-                <label class="form-label">Status - Observação</label>
-                <div class="form-control-plaintext">Produtor regularizado com todas as documentações em dia.</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Criado por</label>
-                <div class="form-control-plaintext">Técnico Admin</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Criado em</label>
-                <div class="form-control-plaintext">10/01/2026 14:30</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Atualizado em</label>
-                <div class="form-control-plaintext">05/03/2026 09:15</div>
-            </div>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="propriedades.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Voltar para Propriedades</a>
+            <a href="cadastro_produtor.html" class="btn btn-outline-success btn-sm"><i class="bi bi-pencil"></i> Editar Ficha</a>
+            <a href="cadastro_produtor.html" class="btn btn-success btn-sm"><i class="bi bi-plus-lg"></i> Novo Produtor</a>
         </div>
     </div>
 
-    <!-- Dados Complementares -->
-    <div class="section-card">
-        <h2 class="section-title h5"><i class="bi bi-info-circle"></i> Dados Complementares</h2>
-        <div class="row g-3">
-            <div class="col-md-4">
-                <label class="form-label">Nome Social</label>
-                <div class="form-control-plaintext">-</div>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label">E-mail</label>
-                <div class="form-control-plaintext">joao.goes@exemplo.com.br</div>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label">Gênero</label>
-                <div class="form-control-plaintext">Masculino</div>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label">Cor / Raça / Etnia</label>
-                <div class="form-control-plaintext">Branca</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">PNE?</label>
-                <div class="form-control-plaintext">Não</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Tipo de Necessidade</label>
-                <div class="form-control-plaintext">-</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Data de Nascimento</label>
-                <div class="form-control-plaintext">15/05/1975</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">RG</label>
-                <div class="form-control-plaintext">12.345.678-X</div>
-            </div>
-            
-            <div class="col-md-2">
-                <label class="form-label">Possui CNPJ?</label>
-                <div class="form-control-plaintext">Sim</div>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label">CNPJ</label>
-                <div class="form-control-plaintext">12.345.678/0001-99</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Nota Fiscal Produtor?</label>
-                <div class="form-control-plaintext">Sim</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Nº Nota Fiscal</label>
-                <div class="form-control-plaintext">987654321</div>
+    <div class="row">
+        <!-- Coluna da Esquerda: Identificação e Perfil -->
+        <div class="col-lg-8">
+            <!-- Seção: Identificação -->
+            <div class="section-card">
+                <h3 class="section-title h6"><i class="bi bi-person-vcard"></i> Identificação e Contato</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="info-label">Nome Completo</span>
+                        <span class="info-value">João da Silva Góes</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Nome Social</span>
+                        <span class="info-value">-</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">CPF</span>
+                        <span class="info-value">123.456.789-00</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">RG</span>
+                        <span class="info-value">12.345.678-X</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Data de Nascimento</span>
+                        <span class="info-value">15/05/1975</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Gênero</span>
+                        <span class="info-value">Masculino</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Cor / Raça / Etnia</span>
+                        <span class="info-value">Branca</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Telefone 1</span>
+                        <span class="info-value">(11) 99999-0001</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Telefone 2</span>
+                        <span class="info-value">(11) 4712-0000</span>
+                    </div>
+                    <div class="col-md-12">
+                        <span class="info-label">E-mail</span>
+                        <span class="info-value">joao.goes@exemplo.com.br</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-2">
-                <label class="form-label">Agricultor Familiar?</label>
-                <div class="form-control-plaintext">Sim</div>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label">Possui DAP?</label>
-                <div class="form-control-plaintext">Sim</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Nº DAP</label>
-                <div class="form-control-plaintext">DAP123456789</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Validade DAP</label>
-                <div class="form-control-plaintext">20/12/2027</div>
-            </div>
-
-            <div class="col-md-3">
-                <label class="form-label">Recebe Assistência Técnica?</label>
-                <div class="form-control-plaintext">Sim</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Tipo Assistência</label>
-                <div class="form-control-plaintext">Pública (Município)</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Periodicidade</label>
-                <div class="form-control-plaintext">Mensal</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Comunidade Tradicional?</label>
-                <div class="form-control-plaintext">Não</div>
-            </div>
-
-            <div class="col-md-3">
-                <label class="form-label">Acessa Internet?</label>
-                <div class="form-control-plaintext">Sim (4G / Wi-Fi)</div>
-            </div>
-            <div class="col-md-5">
-                <label class="form-label">Participa de Cooperativa/Assoc.?</label>
-                <div class="form-control-plaintext">Sim (Assoc. Vinícolas São Roque)</div>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label">% Renda Agricultura</label>
-                <div class="form-control-plaintext">85%</div>
+            <!-- Seção: Perfil Socioeconômico -->
+            <div class="section-card">
+                <h3 class="section-title h6"><i class="bi bi-people"></i> Perfil Socioeconômico</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="info-label">Grau de Instrução</span>
+                        <span class="info-value">Ensino Superior Completo</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">PNE / Necessidade?</span>
+                        <span class="info-value">Não</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Tipo de Necessidade</span>
+                        <span class="info-value">-</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Comunidade Tradicional?</span>
+                        <span class="info-value">Não</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Acessa Internet?</span>
+                        <span class="info-value">Sim (4G / Wi-Fi)</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Reside na Unidade?</span>
+                        <span class="info-value">Sim</span>
+                    </div>
+                    <div class="col-md-8">
+                        <span class="info-label">Participa de Cooperativa / Associação?</span>
+                        <span class="info-value">Sim (Associação das Vinícolas de São Roque)</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-4">
-                <label class="form-label">Rendimento Comercialização</label>
-                <div class="form-control-plaintext">R$ 15.000,00 / mês</div>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label">Outras fontes de renda</label>
-                <div class="form-control-plaintext">Turismo Rural</div>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label">Grau de Instrução</label>
-                <div class="form-control-plaintext">Ensino Superior Completo</div>
-            </div>
-
-            <div class="col-md-3">
-                <label class="form-label">Reside na Unidade?</label>
-                <div class="form-control-plaintext">Sim</div>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label">CEP</label>
-                <div class="form-control-plaintext">18130-000</div>
-            </div>
-            <div class="col-md-5">
-                <label class="form-label">Endereço</label>
-                <div class="form-control-plaintext">Estrada do Vinho, km 15</div>
-            </div>
-            <div class="col-md-2">
-                <label class="form-label">Bairro</label>
-                <div class="form-control-plaintext">Canguera</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Estado</label>
-                <div class="form-control-plaintext">São Paulo</div>
-            </div>
-            <div class="col-md-3">
-                <label class="form-label">Município</label>
-                <div class="form-control-plaintext">São Roque</div>
+            <!-- Seção: Dados Financeiros e Agrícolas -->
+            <div class="section-card">
+                <h3 class="section-title h6"><i class="bi bi-currency-dollar"></i> Dados Financeiros e Agrícolas</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="info-label">Agricultor Familiar?</span>
+                        <span class="info-value">Sim</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Possui DAP / CAF?</span>
+                        <span class="info-value">Sim</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Nº DAP / CAF</span>
+                        <span class="info-value">DAP123456789</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Validade DAP / CAF</span>
+                        <span class="info-value">20/12/2027</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Possui CNPJ?</span>
+                        <span class="info-value">Sim</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">CNPJ</span>
+                        <span class="info-value">12.345.678/0001-99</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Emite Nota Fiscal?</span>
+                        <span class="info-value">Sim</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Nº Nota Fiscal</span>
+                        <span class="info-value">987654321</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">% Renda Agricultura</span>
+                        <span class="info-value">85%</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="info-label">Rendimento Comercialização</span>
+                        <span class="info-value">R$ 15.000,00 / mês</span>
+                    </div>
+                    <div class="col-md-8">
+                        <span class="info-label">Outras fontes de renda</span>
+                        <span class="info-value">Turismo Rural e Venda de Artesanato</span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Unidades Produtivas -->
-    <div class="section-card">
-        <h2 class="section-title h5"><i class="bi bi-house-gear"></i> Unidades Produtivas</h2>
-        <div class="row g-3 mb-4">
-            <div class="col-md-6">
-                <label class="form-label">Nome da Unidade</label>
-                <div class="form-control-plaintext">Sítio dos Vinhedos Góes</div>
+        <!-- Coluna da Direita: Assistência, Localização e Sistema -->
+        <div class="col-lg-4">
+            <!-- Seção: Assistência Técnica -->
+            <div class="section-card">
+                <h3 class="section-title h6"><i class="bi bi-shield-check"></i> Assistência Técnica</h3>
+                <span class="info-label">Recebe Assistência Técnica?</span>
+                <span class="info-value">Sim</span>
+                
+                <span class="info-label">Tipo de Assistência</span>
+                <span class="info-value">Pública (Município)</span>
+                
+                <span class="info-label">Periodicidade</span>
+                <span class="info-value">Mensal</span>
             </div>
-            <div class="col-md-6">
-                <label class="form-label">Tipo da Posse</label>
-                <div class="form-control-plaintext">Proprietário</div>
+
+            <!-- Seção: Localização -->
+            <div class="section-card">
+                <h3 class="section-title h6"><i class="bi bi-geo-alt"></i> Localização da Unidade</h3>
+                <span class="info-label">Nome da Unidade</span>
+                <span class="info-value">Sítio dos Vinhedos Góes</span>
+                
+                <span class="info-label">Tipo da Posse</span>
+                <span class="info-value">Proprietário</span>
+
+                <span class="info-label">Endereço</span>
+                <span class="info-value">Estrada do Vinho, km 15</span>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <span class="info-label">Bairro</span>
+                        <span class="info-value">Canguera</span>
+                    </div>
+                    <div class="col-6">
+                        <span class="info-label">CEP</span>
+                        <span class="info-value">18130-000</span>
+                    </div>
+                    <div class="col-6">
+                        <span class="info-label">Município</span>
+                        <span class="info-value">São Roque</span>
+                    </div>
+                    <div class="col-6">
+                        <span class="info-label">Estado</span>
+                        <span class="info-value">São Paulo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção: Informações do Sistema -->
+            <div class="section-card bg-light-subtle">
+                <h3 class="section-title h6"><i class="bi bi-gear"></i> Info do Sistema</h3>
+                <span class="info-label">Status - Observação</span>
+                <span class="info-value small text-muted">Produtor regularizado com todas as documentações em dia para acesso ao PNAE.</span>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <span class="info-label">Criado por</span>
+                        <span class="info-value small">Técnico Admin</span>
+                    </div>
+                    <div class="col-6">
+                        <span class="info-label">Criado em</span>
+                        <span class="info-value small">10/01/2026</span>
+                    </div>
+                </div>
+                <span class="info-label">Última Atualização</span>
+                <span class="info-value small">05/03/2026 09:15</span>
             </div>
         </div>
-        <label class="form-label">Localização da Propriedade</label>
-        <div id="map-producer"></div>
+
+        <!-- Mapa em Largura Total no Final -->
+        <div class="col-12">
+            <div class="section-card">
+                <h3 class="section-title h6"><i class="bi bi-map"></i> Localização Geográfica</h3>
+                <div id="map-producer"></div>
+            </div>
+        </div>
     </div>
 </main>
+
+<footer class="text-center py-4 text-muted small border-top bg-white mt-auto" style="margin-left: var(--sidebar-width);">
+    © 2026 Fatecs São Roque, Ferraz de Vasconcelos e Suzano.
+</footer>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
