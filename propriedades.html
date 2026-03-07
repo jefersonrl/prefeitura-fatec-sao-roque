@@ -51,6 +51,21 @@
             margin-left: var(--sidebar-width);
             padding: 30px;
         }
+        .shortcut-menu {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+        .shortcut-menu::-webkit-scrollbar {
+            display: none;
+        }
+        .shortcut-menu .btn {
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
         /* Responsividade Mobile */
         @media (max-width: 768px) {
             .sidebar {
@@ -180,7 +195,7 @@
             <p class="text-muted small mb-3">Gerencie todas as propriedades e sítios cadastrados</p>
             
             <!-- Menu de Atalhos Rápidos -->
-            <div class="d-flex gap-2 mb-3">
+            <div class="shortcut-menu">
                 <a href="home.html" class="btn btn-outline-success btn-sm"><i class="bi bi-speedometer2"></i> Dashboard</a>
                 <a href="propriedades.html" class="btn btn-success btn-sm active"><i class="bi bi-houses"></i> Propriedades</a>
                 <a href="mapa_propriedades.html" class="btn btn-outline-success btn-sm"><i class="bi bi-geo-alt"></i> Mapa com Filtros</a>
