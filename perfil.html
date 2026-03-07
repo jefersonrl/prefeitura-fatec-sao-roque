@@ -83,8 +83,8 @@
             }
             .main-content {
                 margin-left: 0;
-                padding: 15px;
-                padding-bottom: 100px;
+                padding: 10px;
+                padding-bottom: 150px; /* Espaço aumentado para não esconder o rodapé */
             }
             .header-top {
                 flex-direction: column;
@@ -92,9 +92,17 @@
                 gap: 15px;
             }
             .user-profile {
-                width: 100%;
-                justify-content: space-between;
-                flex-direction: row-reverse;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: auto;
+                margin-top: 5px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .user-profile .text-end {
+                display: none !important;
             }
             footer {
                 margin-left: 0 !important;
@@ -119,6 +127,19 @@
                 width: 100%;
                 overflow-x: auto;
                 padding-bottom: 5px;
+            }
+            .shortcut-menu {
+                width: 100%;
+                margin-left: 0;
+                padding-left: 0;
+                padding-right: 0;
+                margin-top: 10px;
+                flex-wrap: wrap;
+                overflow-x: visible;
+            }
+            .shortcut-menu .btn {
+                flex-grow: 1;
+                text-align: center;
             }
         }
         .header-top {
@@ -235,6 +256,13 @@
                     <a href="culturas.html" class="btn btn-outline-success btn-sm"><i class="bi bi-tree"></i> Histórico</a>
                     <a href="perfil.html" class="btn btn-success btn-sm active"><i class="bi bi-person-circle"></i> Perfil</a>
                 </div>
+            </div>
+            <div class="user-profile">
+                <div class="text-end d-none d-sm-block">
+                    <div class="fw-bold small">Técnico Agrícola</div>
+                </div>
+                <button onclick="logout()" class="btn btn-outline-danger btn-sm px-2 py-1" style="font-size: 0.7rem;"><i class="bi bi-box-arrow-right"></i> Sair</button>
+                <a href="perfil.html" class="avatar text-decoration-none">SR</a>
             </div>
             <div class="d-flex gap-2">
                 <a href="home.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-x-lg"></i> Cancelar</a>

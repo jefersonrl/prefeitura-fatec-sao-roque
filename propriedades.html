@@ -85,7 +85,7 @@
             .main-content {
                 margin-left: 0;
                 padding: 10px;
-                padding-bottom: 100px;
+                padding-bottom: 150px; /* Espaço aumentado para não esconder o rodapé */
             }
             .header-top {
                 display: flex;
@@ -105,16 +105,25 @@
                 right: 0;
                 width: auto;
                 margin-top: 5px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
             }
             .user-profile .text-end {
                 display: none !important;
             }
             .shortcut-menu {
-                width: calc(100% + 20px);
-                margin-left: -10px;
-                padding-left: 10px;
-                padding-right: 10px;
+                width: 100%;
+                margin-left: 0;
+                padding-left: 0;
+                padding-right: 0;
                 margin-top: 10px;
+                flex-wrap: wrap;
+                overflow-x: visible;
+            }
+            .shortcut-menu .btn {
+                flex-grow: 1;
+                text-align: center;
             }
             footer {
                 margin-left: 0 !important;
@@ -215,8 +224,8 @@
         <div class="user-profile">
             <div class="text-end d-none d-sm-block">
                 <div class="fw-bold small">Técnico Agrícola</div>
-                <button onclick="logout()" class="btn btn-link p-0 text-danger text-decoration-none" style="font-size: 0.7rem;">Sair do Sistema</button>
             </div>
+            <button onclick="logout()" class="btn btn-outline-danger btn-sm px-2 py-1" style="font-size: 0.7rem;"><i class="bi bi-box-arrow-right"></i> Sair</button>
             <a href="perfil.html" class="avatar text-decoration-none">SR</a>
         </div>
     </header>
