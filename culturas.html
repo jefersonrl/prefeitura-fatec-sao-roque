@@ -96,7 +96,7 @@
             }
             .header-top > div:first-child {
                 width: 100%;
-                padding-right: 50px; /* Espaço para o avatar */
+                padding-right: 120px; /* Espaço para avatar e botão sair */
             }
             .user-profile {
                 position: absolute;
@@ -138,11 +138,12 @@
                 left: 10px;
             }
             .btn-edit-cycle, .btn-delete-cycle {
-                position: static;
-                margin-top: 10px;
-                margin-right: 5px;
-                width: 48%;
-                display: inline-block;
+                position: relative;
+                width: 100%;
+                margin: 5px 0;
+                display: block;
+                top: auto;
+                right: auto;
             }
             .d-flex.justify-content-between.align-items-center.mb-4 {
                 flex-direction: column;
