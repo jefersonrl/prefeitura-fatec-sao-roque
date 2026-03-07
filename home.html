@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard • São Roque Agrícola</title>
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Leaflet CSS for Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --sidebar-width: 80px;
+            --brand-green: #198754;
+            --brand-green-dark: #146c43;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+        /* Sidebar Estilo Imagem */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: var(--brand-green);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1000;
+        }
+        .sidebar-icon {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .sidebar-icon:hover, .sidebar-icon.active {
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+        }
+        /* Top Header */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
+        }
+        /* Cards */
+        .stat-card {
+            background: #fff;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 20px;
+            height: 100%;
+        }
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+        }
+        /* Icon Container in Cards */
+        /* Scrollable area for crops */
+        .crops-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        .crops-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .crops-list::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 10px;
+        }
+        .crop-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: 0.2s;
+        }
+        .crop-item:hover {
+            background-color: #fcfcfc;
+        }
+        /* Icon Container in Cards */
+        .stat-icon-box {
+            width: 60px;
+            height: 60px;
+            background-color: var(--brand-green);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        /* Map Container */
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 15px;
+            z-index: 1;
+        }
+        .card-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        /* Floating Button */
+        .btn-add {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--brand-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(25, 135, 84, 0.4);
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+        .btn-add:hover {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav class="sidebar">
+    <a href="home.html" class="sidebar-icon active" title="Dashboard"><i class="bi bi-speedometer2"></i></a>
+    <a href="produtores.html" class="sidebar-icon" title="Produtores"><i class="bi bi-people"></i></a>
+    <a href="#" class="sidebar-icon" title="Mapa"><i class="bi bi-geo-alt"></i></a>
+    <a href="#" class="sidebar-icon" title="Financeiro"><i class="bi bi-currency-dollar"></i></a>
+    <a href="#" class="sidebar-icon" title="Configurações"><i class="bi bi-gear"></i></a>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+    <header class="header-top">
+        <div>
+            <h1 class="h4 mb-0 fw-bold">Áreas de Trabalho</h1>
+            <p class="text-muted small">Tenha uma visão geral das produções em São Roque</p>
+        </div>
+        <div class="user-profile">
+            <div class="text-end d-none d-sm-block">
+                <div class="fw-bold small">Técnico Agrícola</div>
+                <div class="text-muted" style="font-size: 0.7rem;">Sessão Ativa</div>
+            </div>
+            <div class="avatar">SR</div>
+        </div>
+    </header>
+
+    <div class="row g-4 mb-4">
+        <!-- Indicador Principal -->
+        <div class="col-md-4">
+            <div class="stat-card d-flex align-items-center gap-3">
+                <div class="stat-icon-box">
+                    <i class="bi bi-tree-fill"></i>
+                </div>
+                <div>
+                    <div class="stat-value">1.248</div>
+                    <div class="text-muted small">Áreas de Produção Agrícola</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card d-flex align-items-center gap-3">
+                <div class="stat-icon-box">
+                    <i class="bi bi-geo-alt-fill"></i>
+                </div>
+                <div>
+                    <div class="stat-value">16</div>
+                    <div class="text-muted small">Unidades Cadastradas</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card d-flex align-items-center gap-3">
+                <div class="stat-icon-box">
+                    <i class="bi bi-map-fill"></i>
+                </div>
+                <div>
+                    <div class="stat-value">15.4k</div>
+                    <div class="text-muted small">Hectares Mapeados</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Mapa -->
+        <div class="col-lg-8">
+            <div class="stat-card">
+                <h2 class="card-title">Mapa de Unidades - São Roque</h2>
+                <div id="map"></div>
+            </div>
+        </div>
+        <!-- Gráfico / Outros -->
+        <div class="col-lg-4">
+            <div class="stat-card">
+                <h2 class="card-title">Distribuição de Culturas</h2>
+                <div style="height: 200px; position: relative;" class="mb-4">
+                    <canvas id="cropChart"></canvas>
+                </div>
+                
+                <h3 class="h6 fw-bold mb-3 border-top pt-3">Top 5 Culturas</h3>
+                <div class="crops-list" style="max-height: none;">
+                    <!-- 5 Primeiros Exemplos da Região -->
+                    <div class="crop-item d-flex justify-content-between align-items-center py-2">
+                        <span class="small"><i class="bi bi-dot text-success"></i> Uva Niágara</span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill" style="font-size: 0.65rem;">65%</span>
+                    </div>
+                    <div class="crop-item d-flex justify-content-between align-items-center py-2">
+                        <span class="small"><i class="bi bi-dot text-success"></i> Uva Isabel</span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill" style="font-size: 0.65rem;">15%</span>
+                    </div>
+                    <div class="crop-item d-flex justify-content-between align-items-center py-2">
+                        <span class="small"><i class="bi bi-dot text-success"></i> Alcachofra</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill" style="font-size: 0.65rem;">10%</span>
+                    </div>
+                    <div class="crop-item d-flex justify-content-between align-items-center py-2">
+                        <span class="small"><i class="bi bi-dot text-success"></i> Morango</span>
+                        <span class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill" style="font-size: 0.65rem;">5%</span>
+                    </div>
+                    <div class="crop-item d-flex justify-content-between align-items-center py-2">
+                        <span class="small"><i class="bi bi-dot text-success"></i> Hortaliças</span>
+                        <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle rounded-pill" style="font-size: 0.65rem;">5%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<button class="btn-add" title="Cadastrar Nova Área">+</button>
+
+<!-- Leaflet JS for Map -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Inicialização do Mapa (São Roque coordenadas aprox: -23.5300, -47.1333)
+    const map = L.map('map').setView([-23.53, -47.1333], 13);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Mock de 16 Pins de Unidades Cadastradas em São Roque
+    const locations = [
+        { name: "Vinícola Góes", lat: -23.5516, lng: -47.1475 },
+        { name: "Vinícola Quinta do Olivardo", lat: -23.5410, lng: -47.1415 },
+        { name: "Vinícola Casa da Árvore", lat: -23.5580, lng: -47.1520 },
+        { name: "Sítio Rota do Vinho 01", lat: -23.5450, lng: -47.1380 },
+        { name: "Unidade Produtiva Rural A", lat: -23.5350, lng: -47.1250 },
+        { name: "Área Agrícola B", lat: -23.5250, lng: -47.1150 },
+        { name: "Fazenda de Hortaliças 01", lat: -23.5150, lng: -47.1050 },
+        { name: "Ponto de Controle C", lat: -23.5650, lng: -47.1650 },
+        { name: "Unidade de Cultivo D", lat: -23.5750, lng: -47.1750 },
+        { name: "Sítio de Uvas E", lat: -23.5050, lng: -47.0950 },
+        { name: "Área de Trabalho 02", lat: -23.5300, lng: -47.1333 },
+        { name: "Vinhedo Experimental F", lat: -23.5420, lng: -47.1480 },
+        { name: "Unidade Municipal G", lat: -23.5550, lng: -47.1580 },
+        { name: "Horta Comunitária H", lat: -23.5280, lng: -47.1280 },
+        { name: "Área de Plantio I", lat: -23.5380, lng: -47.1380 },
+        { name: "Unidade de Pesquisa J", lat: -23.5480, lng: -47.1480 }
+    ];
+
+    locations.forEach(loc => {
+        L.marker([loc.lat, loc.lng]).addTo(map)
+            .bindPopup(`<b>${loc.name}</b><br>Unidade Cadastrada.`);
+    });
+
+    // Gráfico de Distribuição Restaurado
+    const ctx = document.getElementById('cropChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Uva Niágara', 'Uva Isabel', 'Alcachofra', 'Morango', 'Hortaliças'],
+            datasets: [{
+                data: [65, 15, 10, 5, 5],
+                backgroundColor: ['#198754', '#146c43', '#0d6efd', '#ffc107', '#6c757d'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            cutout: '70%',
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

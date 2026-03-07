@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtores • São Roque Agrícola</title>
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --sidebar-width: 80px;
+            --brand-green: #198754;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: var(--brand-green);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1000;
+        }
+        .sidebar-icon {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .sidebar-icon:hover, .sidebar-icon.active {
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 30px;
+        }
+        .section-card {
+            background: #fff;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-weight: 700;
+            color: var(--brand-green);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        .form-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .form-control-plaintext {
+            font-weight: 500;
+            color: #333;
+            padding-top: 0;
+        }
+        #map-producer {
+            height: 350px;
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+        .badge-status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav class="sidebar">
+    <a href="home.html" class="sidebar-icon" title="Dashboard"><i class="bi bi-speedometer2"></i></a>
+    <a href="#" class="sidebar-icon active" title="Produtores"><i class="bi bi-people"></i></a>
+    <a href="#" class="sidebar-icon" title="Mapa"><i class="bi bi-geo-alt"></i></a>
+    <a href="#" class="sidebar-icon" title="Financeiro"><i class="bi bi-currency-dollar"></i></a>
+    <a href="#" class="sidebar-icon" title="Configurações"><i class="bi bi-gear"></i></a>
+</nav>
+
+<main class="main-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 fw-bold mb-0">Visualização de Produtor</h1>
+        <div>
+            <a href="cadastro_produtor.html" class="btn btn-outline-secondary btn-sm me-2"><i class="bi bi-pencil"></i> Editar</a>
+            <a href="cadastro_produtor.html" class="btn btn-success btn-sm"><i class="bi bi-plus-lg"></i> Novo Produtor</a>
+        </div>
+    </div>
+
+    <!-- Dados Básicos -->
+    <div class="section-card">
+        <h2 class="section-title h5"><i class="bi bi-person-vcard"></i> Dados Básicos</h2>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Nome</label>
+                <div class="form-control-plaintext">João da Silva Góes</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">CPF</label>
+                <div class="form-control-plaintext">123.456.789-00</div>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Telefone 1</label>
+                <div class="form-control-plaintext">(11) 99999-0001</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Telefone 2</label>
+                <div class="form-control-plaintext">(11) 4712-0000</div>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Status</label>
+                <div><span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">Ativo</span></div>
+            </div>
+            <div class="col-md-10">
+                <label class="form-label">Status - Observação</label>
+                <div class="form-control-plaintext">Produtor regularizado com todas as documentações em dia.</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Criado por</label>
+                <div class="form-control-plaintext">Técnico Admin</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Criado em</label>
+                <div class="form-control-plaintext">10/01/2026 14:30</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Atualizado em</label>
+                <div class="form-control-plaintext">05/03/2026 09:15</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dados Complementares -->
+    <div class="section-card">
+        <h2 class="section-title h5"><i class="bi bi-info-circle"></i> Dados Complementares</h2>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Nome Social</label>
+                <div class="form-control-plaintext">-</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">E-mail</label>
+                <div class="form-control-plaintext">joao.goes@exemplo.com.br</div>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Gênero</label>
+                <div class="form-control-plaintext">Masculino</div>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Cor / Raça / Etnia</label>
+                <div class="form-control-plaintext">Branca</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">PNE?</label>
+                <div class="form-control-plaintext">Não</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Tipo de Necessidade</label>
+                <div class="form-control-plaintext">-</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Data de Nascimento</label>
+                <div class="form-control-plaintext">15/05/1975</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">RG</label>
+                <div class="form-control-plaintext">12.345.678-X</div>
+            </div>
+            
+            <div class="col-md-2">
+                <label class="form-label">Possui CNPJ?</label>
+                <div class="form-control-plaintext">Sim</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">CNPJ</label>
+                <div class="form-control-plaintext">12.345.678/0001-99</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Nota Fiscal Produtor?</label>
+                <div class="form-control-plaintext">Sim</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Nº Nota Fiscal</label>
+                <div class="form-control-plaintext">987654321</div>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Agricultor Familiar?</label>
+                <div class="form-control-plaintext">Sim</div>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Possui DAP?</label>
+                <div class="form-control-plaintext">Sim</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Nº DAP</label>
+                <div class="form-control-plaintext">DAP123456789</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Validade DAP</label>
+                <div class="form-control-plaintext">20/12/2027</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Recebe Assistência Técnica?</label>
+                <div class="form-control-plaintext">Sim</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Tipo Assistência</label>
+                <div class="form-control-plaintext">Pública (Município)</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Periodicidade</label>
+                <div class="form-control-plaintext">Mensal</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Comunidade Tradicional?</label>
+                <div class="form-control-plaintext">Não</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Acessa Internet?</label>
+                <div class="form-control-plaintext">Sim (4G / Wi-Fi)</div>
+            </div>
+            <div class="col-md-5">
+                <label class="form-label">Participa de Cooperativa/Assoc.?</label>
+                <div class="form-control-plaintext">Sim (Assoc. Vinícolas São Roque)</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">% Renda Agricultura</label>
+                <div class="form-control-plaintext">85%</div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Rendimento Comercialização</label>
+                <div class="form-control-plaintext">R$ 15.000,00 / mês</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Outras fontes de renda</label>
+                <div class="form-control-plaintext">Turismo Rural</div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Grau de Instrução</label>
+                <div class="form-control-plaintext">Ensino Superior Completo</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Reside na Unidade?</label>
+                <div class="form-control-plaintext">Sim</div>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">CEP</label>
+                <div class="form-control-plaintext">18130-000</div>
+            </div>
+            <div class="col-md-5">
+                <label class="form-label">Endereço</label>
+                <div class="form-control-plaintext">Estrada do Vinho, km 15</div>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Bairro</label>
+                <div class="form-control-plaintext">Canguera</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Estado</label>
+                <div class="form-control-plaintext">São Paulo</div>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Município</label>
+                <div class="form-control-plaintext">São Roque</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unidades Produtivas -->
+    <div class="section-card">
+        <h2 class="section-title h5"><i class="bi bi-house-gear"></i> Unidades Produtivas</h2>
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label class="form-label">Nome da Unidade</label>
+                <div class="form-control-plaintext">Sítio dos Vinhedos Góes</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Tipo da Posse</label>
+                <div class="form-control-plaintext">Proprietário</div>
+            </div>
+        </div>
+        <label class="form-label">Localização da Propriedade</label>
+        <div id="map-producer"></div>
+    </div>
+</main>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // Inicialização do Mapa para o Produtor
+    const map = L.map('map-producer').setView([-23.5516, -47.1475], 15);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Pin da Propriedade
+    L.marker([-23.5516, -47.1475]).addTo(map)
+        .bindPopup("<b>Sítio dos Vinhedos Góes</b><br>Unidade Produtiva Principal.")
+        .openPopup();
+</script>
+
+</body>
+</html>
