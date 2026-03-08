@@ -88,26 +88,40 @@
             }
             .header-top {
                 display: flex;
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                justify-content: space-between;
                 gap: 10px;
-                margin-bottom: 15px;
-                position: relative;
+                padding-top: 10px;
             }
-            .header-top > div:first-child {
-                width: 100%;
-                padding-right: 120px; /* Espaço para avatar e botão sair */
-                padding-left: 40px; /* Espaço para o botão do menu */
+            .mobile-menu-btn {
+                position: static;
+                margin-right: 10px;
+                font-size: 1.8rem;
+                flex-shrink: 0;
+            }
+            .header-title-container {
+                flex-grow: 1;
+                width: auto !important;
+                padding: 0 !important;
+                min-width: 0; /* Permite truncar o texto se necessário */
+            }
+            .header-title-container h1 {
+                font-size: 1.1rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: 0;
+            }
+            .header-title-container p {
+                display: none; /* Oculta subtítulo no mobile para economizar espaço */
             }
             .user-profile {
-                position: absolute;
-                top: 0;
-                right: 0;
+                position: static;
+                margin-top: 0;
                 width: auto;
-                margin-top: 5px;
-                display: flex;
-                align-items: center;
-                gap: 10px;
+                flex-shrink: 0;
             }
             .user-profile .text-end {
                 display: none !important;
@@ -115,16 +129,11 @@
             .shortcut-menu {
                 display: none;
             }
-            .mobile-menu-btn {
-                position: absolute;
-                top: 0;
-                left: 0;
-                font-size: 1.5rem;
-                color: #333;
-                background: none;
-                border: none;
-                padding: 0;
-                z-index: 10;
+            .btn-edit-cycle, .btn-delete-cycle {
+                width: 100%;
+                display: block;
+                margin: 5px 0;
+                position: static;
             }
             footer {
                 margin-left: 0 !important;
@@ -277,7 +286,7 @@
         <button class="mobile-menu-btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
             <i class="bi bi-list"></i>
         </button>
-        <div>
+        <div class="header-title-container">
             <h1 class="h4 mb-0 fw-bold">Histórico de Culturas</h1>
             <p class="text-muted small mb-3">Registro cronológico de produtores e suas áreas agrícolas</p>
             
