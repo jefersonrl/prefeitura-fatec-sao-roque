@@ -117,27 +117,24 @@
             }
             .shortcut-menu {
                 width: 100%;
-                margin-left: 0;
-                margin-right: 0;
+                margin: 10px 0 0 0;
                 padding: 0;
-                margin-top: 10px;
-                flex-wrap: wrap;
-                overflow-x: visible;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
                 background-color: transparent;
                 border: none;
-                justify-content: flex-start;
-                gap: 8px;
             }
             .shortcut-menu .btn {
-                flex: 1 1 calc(50% - 8px);
-                text-align: center;
+                width: 100%;
                 margin: 0;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                text-align: center;
             }
             .shortcut-menu .btn:nth-child(3) {
-                flex: 1 1 100%; /* O botão do mapa fica sozinho na linha por ser mais longo */
+                grid-column: span 2;
             }
             .stat-card {
                 padding: 15px;
