@@ -177,6 +177,14 @@
             color: #666;
             border: 2px solid var(--brand-green);
         }
+        .section-card {
+            background: #fff;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 48px;
+        }
         .section-title {
             font-weight: 700;
             color: var(--brand-green);
@@ -247,10 +255,6 @@
                 <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill" style="font-size: 0.7rem;">Editando Perfil</span>
             </div>
         </div>
-        <div class="d-flex gap-2">
-            <a href="propriedades.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-x-lg"></i> Cancelar</a>
-            <button type="submit" form="formCadastro" class="btn btn-success btn-sm"><i class="bi bi-check-lg"></i> Salvar Alterações</button>
-        </div>
     </div>
 
     <form id="formCadastro">
@@ -269,19 +273,19 @@
                             <label for="nomeSocial" class="form-label">Nome Social</label>
                             <input type="text" class="form-control" id="nomeSocial">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="cpf" class="form-label">CPF</label>
                             <input type="text" class="form-control" id="cpf" value="123.456.789-00" required>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="rg" class="form-label">RG</label>
                             <input type="text" class="form-control" id="rg" value="12.345.678-X">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="dataNasc" class="form-label">Data de Nascimento</label>
                             <input type="date" class="form-control" id="dataNasc" value="1975-05-15">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="genero" class="form-label">Gênero</label>
                             <select class="form-select" id="genero">
                                 <option value="M" selected>Masculino</option>
@@ -289,7 +293,7 @@
                                 <option value="O">Outro</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="raca" class="form-label">Cor / Raça / Etnia</label>
                             <select class="form-select" id="raca">
                                 <option value="branca" selected>Branca</option>
@@ -299,15 +303,15 @@
                                 <option value="indigena">Indígena</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="tel1" class="form-label">Telefone 1</label>
                             <input type="text" class="form-control" id="tel1" value="(11) 99999-0001">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="tel2" class="form-label">Telefone 2</label>
                             <input type="text" class="form-control" id="tel2" value="(11) 4712-0000">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-3">
                             <label for="email" class="form-label">E-mail</label>
                             <input type="email" class="form-control" id="email" value="joao.goes@exemplo.com.br">
                         </div>
@@ -326,6 +330,10 @@
                                 <option value="fundamental_com">Fundamental Completo</option>
                             </select>
                         </div>
+                        <div class="col-md-6">
+                            <label for="entidade" class="form-label">Participa de Cooperativa / Associação?</label>
+                            <input type="text" class="form-control" id="entidade" value="Associação das Vinícolas de São Roque">
+                        </div>
                         <div class="col-md-3">
                             <label class="form-label d-block">PNE / Necessidade?</label>
                             <div class="form-check form-check-inline">
@@ -341,7 +349,7 @@
                             <label for="tipoPne" class="form-label">Tipo</label>
                             <input type="text" class="form-control" id="tipoPne">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label class="form-label d-block">Comunidade Tradicional?</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="comum" id="comumSim" value="sim">
@@ -352,7 +360,7 @@
                                 <label class="form-check-label" for="comumNao">Não</label>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label class="form-label d-block">Acessa Internet?</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="net" id="netSim" value="sim" checked>
@@ -363,7 +371,7 @@
                                 <label class="form-check-label" for="netNao">Não</label>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label class="form-label d-block">Reside na Unidade?</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="reside" id="resideSim" value="sim" checked>
@@ -374,10 +382,6 @@
                                 <label class="form-check-label" for="resideNao">Não</label>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <label for="entidade" class="form-label">Participa de Cooperativa / Associação?</label>
-                            <input type="text" class="form-control" id="entidade" value="Associação das Vinícolas de São Roque">
-                        </div>
                     </div>
                 </div>
 
@@ -385,51 +389,51 @@
                 <div class="section-card">
                     <h2 class="section-title h6"><i class="bi bi-currency-dollar"></i> Dados Financeiros e Agrícolas</h2>
                     <div class="row g-3">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="form-label d-block">Agric. Familiar?</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="familiar" id="familiarSim" value="sim" checked>
                                 <label class="form-check-label" for="familiarSim">Sim</label>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="form-label d-block">Possui DAP / CAF?</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="hasDap" id="dapSim" value="sim" checked>
                                 <label class="form-check-label" for="dapSim">Sim</label>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="dapNum" class="form-label">Nº DAP / CAF</label>
                             <input type="text" class="form-control" id="dapNum" value="DAP123456789">
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="dapVal" class="form-label">Validade</label>
                             <input type="date" class="form-control" id="dapVal" value="2027-12-20">
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="form-label d-block">Possui CNPJ?</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="hasCnpj" id="cnpjSim" value="sim" checked>
                                 <label class="form-check-label" for="cnpjSim">Sim</label>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="cnpj" class="form-label">CNPJ</label>
                             <input type="text" class="form-control" id="cnpj" value="12.345.678/0001-99">
                         </div>
-                        <div class="col-md-3">
-                            <label class="form-label d-block">Nota Fiscal Produtor?</label>
+                        <div class="col-md-2">
+                            <label class="form-label d-block">Nota Fiscal?</label>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="hasNf" id="nfSim" value="sim" checked>
                                 <label class="form-check-label" for="nfSim">Sim</label>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="nfNum" class="form-label">Nº Nota Fiscal</label>
                             <input type="text" class="form-control" id="nfNum" value="987654321">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <label for="rendaAgro" class="form-label">% Renda Agricultura</label>
                             <input type="number" class="form-control" id="rendaAgro" value="85">
                         </div>
@@ -437,7 +441,7 @@
                             <label for="rendCom" class="form-label">Rendimento (Mês)</label>
                             <input type="text" class="form-control" id="rendCom" value="R$ 15.000,00">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <label for="outrasRendas" class="form-label">Outras Fontes</label>
                             <input type="text" class="form-control" id="outrasRendas" value="Turismo Rural">
                         </div>
@@ -450,46 +454,48 @@
                 <!-- Assistência Técnica -->
                 <div class="section-card">
                     <h2 class="section-title h6"><i class="bi bi-shield-check"></i> Assistência Técnica</h2>
-                    <div class="mb-3">
-                        <label class="form-label d-block">Recebe Assist. Técnica?</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="assist" id="assistSim" value="sim" checked>
-                            <label class="form-check-label" for="assistSim">Sim</label>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label d-block">Recebe Assist. Técnica?</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="assist" id="assistSim" value="sim" checked>
+                                <label class="form-check-label" for="assistSim">Sim</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="assist" id="assistNao" value="nao">
+                                <label class="form-check-label" for="assistNao">Não</label>
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="assist" id="assistNao" value="nao">
-                            <label class="form-check-label" for="assistNao">Não</label>
+                        <div class="col-12">
+                            <label for="tipoAssist" class="form-label">Tipo Assistência</label>
+                            <input type="text" class="form-control" id="tipoAssist" value="Pública (Município)">
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="tipoAssist" class="form-label">Tipo Assistência</label>
-                        <input type="text" class="form-control" id="tipoAssist" value="Pública (Município)">
-                    </div>
-                    <div>
-                        <label for="periodAssist" class="form-label">Periodicidade</label>
-                        <select class="form-select" id="periodAssist">
-                            <option value="mensal" selected>Mensal</option>
-                            <option value="semanal">Semanal</option>
-                            <option value="eventual">Eventual</option>
-                        </select>
+                        <div class="col-12">
+                            <label for="periodAssist" class="form-label">Periodicidade</label>
+                            <select class="form-select" id="periodAssist">
+                                <option value="mensal" selected>Mensal</option>
+                                <option value="semanal">Semanal</option>
+                                <option value="eventual">Eventual</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Localização -->
                 <div class="section-card">
                     <h2 class="section-title h6"><i class="bi bi-geo-alt"></i> Localização</h2>
-                    <div class="mb-3">
-                        <label for="nomeUnidade" class="form-label">Nome da Unidade</label>
-                        <input type="text" class="form-control" id="nomeUnidade" value="Sítio dos Vinhedos Góes">
-                    </div>
-                    <div class="mb-3">
-                        <label for="tipoPosse" class="form-label">Tipo da Posse</label>
-                        <select class="form-select" id="tipoPosse">
-                            <option value="proprietario" selected>Proprietário</option>
-                            <option value="arrendatario">Arrendatário</option>
-                        </select>
-                    </div>
-                    <div class="row g-2 mb-3">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="nomeUnidade" class="form-label">Nome da Unidade</label>
+                            <input type="text" class="form-control" id="nomeUnidade" value="Sítio dos Vinhedos Góes">
+                        </div>
+                        <div class="col-12">
+                            <label for="tipoPosse" class="form-label">Tipo da Posse</label>
+                            <select class="form-select" id="tipoPosse">
+                                <option value="proprietario" selected>Proprietário</option>
+                                <option value="arrendatario">Arrendatário</option>
+                            </select>
+                        </div>
                         <div class="col-6">
                             <label for="cep" class="form-label">CEP</label>
                             <input type="text" class="form-control" id="cep" value="18130-000">
@@ -498,27 +504,29 @@
                             <label for="bairro" class="form-label">Bairro</label>
                             <input type="text" class="form-control" id="bairro" value="Canguera">
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="endereco" class="form-label">Endereço</label>
-                        <input type="text" class="form-control" id="endereco" value="Estrada do Vinho, km 15">
+                        <div class="col-12">
+                            <label for="endereco" class="form-label">Endereço</label>
+                            <input type="text" class="form-control" id="endereco" value="Estrada do Vinho, km 15">
+                        </div>
                     </div>
                 </div>
 
                 <!-- Info Sistema -->
                 <div class="section-card bg-light-subtle">
                     <h2 class="section-title h6"><i class="bi bi-gear"></i> Info do Sistema</h2>
-                    <div class="mb-3">
-                        <label for="status" class="form-label">Status do Produtor</label>
-                        <select class="form-select form-select-sm" id="status">
-                            <option value="ativo" selected>Ativo</option>
-                            <option value="pendente">Pendente</option>
-                            <option value="inativo">Inativo</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="obs" class="form-label">Observação de Status</label>
-                        <textarea class="form-control form-control-sm" id="obs" rows="2">Produtor regularizado com todas as documentações em dia.</textarea>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="status" class="form-label">Status do Produtor</label>
+                            <select class="form-select form-select-sm" id="status">
+                                <option value="ativo" selected>Ativo</option>
+                                <option value="pendente">Pendente</option>
+                                <option value="inativo">Inativo</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="obs" class="form-label">Observação de Status</label>
+                            <textarea class="form-control form-control-sm" id="obs" rows="2">Produtor regularizado com todas as documentações em dia.</textarea>
+                        </div>
                     </div>
                 </div>
             </div>
