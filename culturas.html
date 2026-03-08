@@ -126,16 +126,7 @@
             .shortcut-menu {
                 display: none;
             }
-            .btn-edit-cycle, .btn-delete-cycle {
-                width: 100%;
-                display: block;
-                margin: 5px 0;
-                position: static;
-            }
-            footer {
-                margin-left: 0 !important;
-                padding-bottom: 80px !important;
-            }
+            /* Ajuste da Timeline no Mobile */
             .timeline::before {
                 left: 21px;
             }
@@ -145,13 +136,18 @@
             .timeline-marker {
                 left: 10px;
             }
+            /* Botões de Ação na Timeline (Mobile) - Empilhados e Estáticos */
             .btn-edit-cycle, .btn-delete-cycle {
-                position: relative;
+                position: static !important;
                 width: 100%;
-                margin: 5px 0;
                 display: block;
+                margin: 8px 0;
                 top: auto;
                 right: auto;
+            }
+            footer {
+                margin-left: 0 !important;
+                padding-bottom: 80px !important;
             }
             .d-flex.justify-content-between.align-items-center.mb-4 {
                 flex-direction: column;
@@ -339,8 +335,6 @@
             <div class="timeline-item">
                 <div class="timeline-marker"></div>
                 <div class="timeline-content">
-                    <a href="cadastro_cultura.html" class="btn btn-outline-success btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
-                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                     <div class="timeline-date">2026 - Presente</div>
                     <div class="crop-name text-success">Uva Niágara e Turismo Rural Sustentável</div>
                     <div class="producer-info">
@@ -348,6 +342,8 @@
                         <strong>Área:</strong> 5.2 Hectares | <strong>Técnico Resp:</strong> Ricardo M.
                     </div>
                     <p class="small text-muted mb-0">Implementação de manejo biológico e abertura para visitas monitoradas, unindo tradição vitivinícola com educação ambiental.</p>
+                    <a href="cadastro_cultura.html" class="btn btn-outline-success btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
+                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                 </div>
             </div>
 
@@ -355,8 +351,6 @@
             <div class="timeline-item">
                 <div class="timeline-marker bg-success"></div>
                 <div class="timeline-content">
-                    <a href="cadastro_cultura.html" class="btn btn-outline-success btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
-                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                     <div class="timeline-date">2010 - 2025</div>
                     <div class="crop-name text-dark">Expansão e Modernização (Uva Isabel e Bordô)</div>
                     <div class="producer-info">
@@ -364,6 +358,8 @@
                         <strong>Foco:</strong> Vinificação de alta qualidade e Alcachofra Gourmet.
                     </div>
                     <p class="small text-muted mb-0">Período marcado pela aquisição de novos maquinários e foco na produção de vinhos finos reconhecidos na Rota do Vinho de São Roque.</p>
+                    <a href="cadastro_cultura.html" class="btn btn-outline-success btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
+                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                 </div>
             </div>
 
@@ -371,8 +367,6 @@
             <div class="timeline-item">
                 <div class="timeline-marker bg-secondary"></div>
                 <div class="timeline-content border-secondary">
-                    <a href="cadastro_cultura.html" class="btn btn-outline-success btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
-                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                     <div class="timeline-date">1980 - 2009</div>
                     <div class="crop-name text-muted">Consolidação na Rota do Vinho</div>
                     <div class="producer-info">
@@ -380,6 +374,8 @@
                         <strong>Cultura:</strong> Uvas Niágara, Isabel e início da Alcachofra.
                     </div>
                     <p class="small text-muted mb-0">O Sítio torna-se um dos pilares da Estrada do Vinho. Início da transição de agricultura de subsistência para comercialização regional.</p>
+                    <a href="cadastro_cultura.html" class="btn btn-outline-success btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
+                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                 </div>
             </div>
 
@@ -387,8 +383,6 @@
             <div class="timeline-item">
                 <div class="timeline-marker bg-secondary"></div>
                 <div class="timeline-content border-secondary">
-                    <a href="cadastro_cultura.html" class="btn btn-outline-success btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
-                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                     <div class="timeline-date">1945 - 1979</div>
                     <div class="crop-name text-muted">Herança e Diversificação</div>
                     <div class="producer-info">
@@ -396,6 +390,8 @@
                         <strong>Cultura:</strong> Milho, Feijão e primeiros Vinhedos de Niágara.
                     </div>
                     <p class="small text-muted mb-0">Após a herança das terras, a família começa a investir no plantio de uvas para produção artesanal de vinhos destinados ao consumo local.</p>
+                    <a href="cadastro_cultura.html" class="btn btn-outline-success btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
+                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                 </div>
             </div>
 
@@ -403,8 +399,6 @@
             <div class="timeline-item">
                 <div class="timeline-marker bg-warning"></div>
                 <div class="timeline-content border-warning">
-                    <a href="cadastro_cultura.html" class="btn btn-outline-warning btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
-                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                     <div class="timeline-date">1928 - Fundação</div>
                     <div class="crop-name text-dark">A Chegada da Família e Aquisição das Terras</div>
                     <div class="producer-info">
@@ -412,6 +406,8 @@
                         <strong>Área Inicial:</strong> 12 Hectares originais.
                     </div>
                     <p class="small text-muted mb-0">Aquisição das terras na região do Canguera. O início da trajetória com agricultura de subsistência e o sonho de cultivar videiras em solo são-roquense.</p>
+                    <a href="cadastro_cultura.html" class="btn btn-outline-warning btn-edit-cycle"><i class="bi bi-pencil"></i> Editar</a>
+                    <button class="btn btn-outline-danger btn-delete-cycle" onclick="confirmDelete(this)"><i class="bi bi-trash"></i> Excluir</button>
                 </div>
             </div>
         </div>
